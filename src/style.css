@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* UI view styles */
+#api-view {
+  @apply fixed top-0 left-0 right-0 bottom-0 bg-cy-blue-darker h-screen overflow-scroll mb-10 ;
+  z-index: 9999999
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.__cypress-highlight {
+  opacity: 0.2 !important;
+  pointer-events: none !important;
+}
+
+[data-layer="Padding"], [data-layer="Border"], [data-layer="Content"] {
+  opacity: 0 !important;
+}
+
+[data-layer="Margin"] {
+  @apply bg-yellow-100 !important;
+  opacity: 0;
+  animation: fade-out 2s ease-in-out;
+}
+
+[data-cy=showAuth]:checked + label,
+[data-cy=showQuery]:checked + label,
+[data-cy=showRequestHeaders]:checked + label,
+[data-cy=showRequestBody]:checked + label,
+[data-cy=showResponseBody]:checked + label,
+[data-cy=showResponseHeaders]:checked + label,
+[data-cy=showCookies]:checked + label {
+  @apply text-cy-gray-light
+}
+
+[data-cy=showAuth]:checked ~ [data-cy=auth],
+[data-cy=showQuery]:checked ~ [data-cy=query],
+[data-cy=showRequestHeaders]:checked ~ [data-cy=requestHeaders],
+[data-cy=showRequestBody]:checked ~ [data-cy=requestBody],
+[data-cy=showResponseBody]:checked ~ [data-cy=responseBody],
+[data-cy=showResponseHeaders]:checked ~ [data-cy=responseHeaders],
+[data-cy=showCookies]:checked ~ [data-cy=cookies] {
+  @apply block
+}
+
+[data-cy=showAuth]:not(:checked) ~ [data-cy=auth],
+[data-cy=showQuery]:not(:checked) ~ [data-cy=query],
+[data-cy=showRequestHeaders]:not(:checked) ~ [data-cy=requestHeaders],
+[data-cy=showRequestBody]:not(:checked) ~ [data-cy=requestBody],
+[data-cy=showResponseBody]:not(:checked) ~ [data-cy=responseBody],
+[data-cy=showResponseHeaders]:not(:checked) ~ [data-cy=responseHeaders],
+[data-cy=showCookies]:not(:checked) ~ [data-cy=cookies] {
+  @apply hidden
+}
+
+/* PrismJS styles */
+pre {
+  @apply p-3 text-cy-gray-light text-xs;
+}
+
+pre code.hljs{
+  display:block;
+  overflow-x:auto;
+  padding:1em;
+}
+code.hljs{
+  padding:3px 5px
+}
+.hljs{
+  @apply bg-cy-blue-darkest border-slate-800 pl-0 py-4 pr-4 border mt-2
+}
+.hljs ::selection,.hljs::selection{
+  @apply bg-cy-blue-dark;
+}
+
+.comment{
+  @apply text-cy-gray
+}
+.tag{
+  @apply text-cy-blue
+}
+.operator, .punctuation, .subst{
+  @apply text-cy-gray
+}
+.operator{
+  opacity:.7
+}
+.bullet, .deletion, .name, .selector-tag, .template-variable, .variable{
+  @apply text-cy-red
+}
+.attr, .link, .literal, .number, .symbol, .variable.constant_{
+  @apply text-cy-gray-light
+}
+.number{
+  @apply text-cy-green
+}
+.attr-name {
+  @apply text-cy-green
+}
+.attr-value {
+  @apply text-cy-gray-light
+}
+
+.addition, .built_in, .code, .doctag, .keyword.atrule, .quote, .regexp, .string, .title.class_.inherited__{
+  @apply text-cy-blue
+}
+
+.diff .meta, .keyword, .template-tag, .type{
+  @apply text-cy-purple
+}
+
+.meta, .meta .keyword, .meta .string{
+  @apply text-cy-gray
+}
+
+/* hiding scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;  /* Firefox */
+}
+
+.line-number {
+  @apply pr-2 inline-block;
+}
+
+details summary { 
+  cursor: pointer;
+}
+
+details summary {
+  @apply text-cy-gray
+}
+
+code > details:first-of-type > summary{
+  @apply -ml-4;
+}
+
+details[open] summary.brace::before { 
+  content: " ▼ ";
+  @apply text-slate-700 -ml-2;
+}
+
+details[open] summary.bracket::before { 
+  content: " ▼ ";
+  @apply text-slate-700 -ml-2;
+}
+
+details:not([open]) summary.brace::before { 
+  content: " ▶︎ ";
+  @apply text-slate-700 -ml-2;
+}
+
+details:not([open]) summary.bracket::before { 
+  content: " ▶︎ ";
+  @apply text-slate-700 -ml-2;
+}
+
+details:not([open]) summary.brace::after { 
+  content: "…";
+  @apply w-full inline-block
+}
+
+details:not([open]) summary.bracket::after { 
+  content: "…";
+  @apply w-full inline-block
+}
+
+details:not([open]) { 
+  @apply inline-block
+}
+
+.separator{
+    font-size: 50px;
+    display: block;
+    text-align: center;
+    letter-spacing: 5px;
+    @apply text-cy-blue-dark block md:hidden -my-6;
+}
